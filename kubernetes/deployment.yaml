@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tic-tac-toe
+  namespace: tic-tac-toe
   labels:
     app: tic-tac-toe
 spec:
@@ -14,6 +15,14 @@ spec:
       labels:
         app: tic-tac-toe
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        fsGroup: 101
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: tic-tac-toe
+      automountServiceAccountToken: false
       containers:
       - name: tic-tac-toe
         image: ghcr.io/dihjaywyper/tiktaktoe_app:sha-bf586190305cc3f92c3733bf455d37a4bb73b917
@@ -21,6 +30,14 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 101
+          capabilities:
+            drop:
+            - ALL
         resources:
           limits:
             cpu: "0.5"
@@ -40,5 +57,19 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: cache
+          mountPath: /var/cache/nginx
+        - name: run
+          mountPath: /var/run
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: cache
+        emptyDir: {}
+      - name: run
+        emptyDir: {}
       imagePullSecrets:
       - name: github-container-registry
