@@ -49,15 +49,15 @@ The game implements the following rules:
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (24)
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/devsecops-demo.git
-   cd devsecops-demo
+   git clone https://github.com/yourusername/tiktaktoe.git
+   cd tiktaktoe
    ```
 
 2. Install dependencies:
