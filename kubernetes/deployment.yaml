@@ -27,7 +27,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: tic-tac-toe
-        image: ghcr.io/dihjaywyper/tiktaktoe_app:sha-bf586190305cc3f92c3733bf455d37a4bb73b917
+        image: ghcr.io/dihjaywyper/tiktaktoe_app:sha-c766d7183a822e32e3685fc9e3dc01e85ad259bb
         # Image will be automatically updated by CI/CD pipeline
         imagePullPolicy: Always
         ports:
