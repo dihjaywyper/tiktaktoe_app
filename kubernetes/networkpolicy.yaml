@@ -3,6 +3,8 @@ kind: NetworkPolicy
 metadata:
   name: tic-tac-toe-network-policy
   namespace: tic-tac-toe
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app: tic-tac-toe
 spec:

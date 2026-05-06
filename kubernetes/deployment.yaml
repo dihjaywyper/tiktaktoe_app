@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: tic-tac-toe
   namespace: tic-tac-toe
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
   labels:
     app: tic-tac-toe
 spec:
