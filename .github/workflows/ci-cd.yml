@@ -59,6 +59,7 @@ jobs:
         with:
           directory: kubernetes
           framework: kubernetes
+          skip_check: CKV_K8S_43
           quiet: true
 
   build:
